@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"/>
+    <div th:insert="~{blocks/header}"/>
+</head>
+<body>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Номер</th>
+        <th>Роль</th>
+        <th>Действие</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="role : ${roles}">
+        <td th:text="${role.idRole}"></td>
+        <td th:text="${role.nameRole}"></td>
+        <td>
+            <a class="btn btn-light" th:href="@{/Role/Index/{id}(id=${role.idRole})}">🗑️</a>
+            |
+            <a class="btn btn-light" th:href="@{/Role/Update/{id}(id=${role.idRole})}">🔄</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a class="operator btn btn-info" href="/Role/Add">Создать</a>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"/>
+    <div th:insert="~{blocks/header}"/>
+</head>
+<body>
+<main class="container-md">
+    <h1>Добавление</h1>
+    <form th:method="POST" th:action="@{/Role/Add}" th:object="${role}">
+        <input placeholder="Название роли:" type="text" class="form-control p-2" th:field="*{nameRole}"/>
+        <span th:if="${#fields.hasErrors('nameRole')}" th:errors="*{nameRole}"></span>
+        <br/>
+        <button type="submit"  class="operator btn btn-info">Добавить</button>
+    </form>
+</main>
+</body>
+</html>

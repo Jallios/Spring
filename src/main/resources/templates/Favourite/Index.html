@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"/>
+    <div th:insert="~{blocks/header}"/>
+</head>
+<body>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Пользователь</th>
+        <th>Статья</th>
+        <th>Действие</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <form th:each="el : ${user.getArticleList()}">
+            <td th:text="${user.login}"></td>
+            <td th:text="${el.heading}"></td>
+            <td>
+                <a class="btn btn-light" th:href="@{/Favourite/Index/{id_User}/{id_Article}(id_User=${user.idUser},id_Article=${el.idArticle})}">🗑️</a>
+            </td>
+        </form>
+    </tr>
+    </tbody>
+
+</table>
+<a class="operator btn btn-info" href="/Favourite/Add">Создать</a>
+
+</body>
+</html>

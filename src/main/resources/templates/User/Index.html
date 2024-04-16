@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"/>
+    <div th:insert="~{blocks/header}"/>
+</head>
+<body>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Номер</th>
+        <th>Логин</th>
+        <th>Пароль</th>
+        <th>Роль</th>
+        <th>Действие</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.idUser}"></td>
+        <td th:text="${user.login}"></td>
+        <td th:text="${user.password}"></td>
+        <td th:each="role : ${user.getRole()}" th:text="${role.getNameRole()}"></td>
+        <td>
+            <a class="btn btn-light" th:href="@{/User/Index/{id}(id=${user.idUser})}">🗑️</a>
+            |
+            <a class="btn btn-light" th:href="@{/User/Update/{id}(id=${user.idUser})}">🔄</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a class="operator btn btn-info" href="/User/Add">Создать</a>
+
+</body>
+</html>

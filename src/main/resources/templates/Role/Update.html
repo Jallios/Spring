@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"/>
+    <div th:insert="~{blocks/header}"/>
+</head>
+<body>
+<main class="container-md">
+    <h1>Редактирование</h1>
+    <form th:method="POST" th:action="@{/Role/Update/{id}(id=${role.getIdRole()})}" th:object="${role}">
+        <input placeholder="Название роли:" class="form-control p-2" type="text" th:field="*{nameRole}"/>
+        <span th:if="${#fields.hasErrors('nameRole')}" th:errors="*{nameRole}" style="color: red"></span>
+        <br/>
+        <button type="submit"  class="operator btn btn-info">Сохранить</button>
+    </form>
+</main>
+</body>
+</html>

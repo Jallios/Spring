@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"/>
+    <div th:insert="~{blocks/header}"/>
+</head>
+<body>
+<main class="container-md">
+    <form th:method="POST" th:action="@{/Favourite/Add}">
+        <select class="form-select" name="idUser" >
+            <div th:each="user : ${users}">
+                <option th:text="${user.login}" th:value="${user.idUser}"></option>
+            </div>
+        </select>
+        <br/>
+        <select class="form-select" name="idArticle" >
+            <div th:each="article : ${articles}">
+                <option th:text="${article.heading}" th:value="${article.idArticle}"></option>
+            </div>
+        </select>
+        <br/>
+        <button type="submit"  class="operator btn btn-info">Добавить</button>
+    </form>
+</main>
+</body>
+</html>

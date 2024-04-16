@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"/>
+    <div th:insert="~{blocks/header}"/>
+</head>
+<body>
+<main class="container-md">
+    <h1>Добавление</h1>
+    <form th:method="POST" th:action="@{/Article/Add}" th:object="${article}">
+        <input placeholder="Заголовок:" type="text" class="form-control p-2" th:field="*{heading}"/>
+        <span th:if="${#fields.hasErrors('heading')}" th:errors="*{heading}" style="color: red"></span>
+        <br/>
+        <textarea placeholder="Текст:" type="password" class="form-control p-2" th:field="*{text}"/>
+        <span th:if="${#fields.hasErrors('text')}" th:errors="*{text}" style="color: red"></span>
+        <br/>
+        <select class="form-select" name="idUser" >
+            <div th:each="user : ${users}">
+                <option th:text="${user.login}" th:value="${user.idUser}"></option>
+            </div>
+        </select>
+        <br/>
+        <button type="submit"  class="operator btn btn-info">Добавить</button>
+    </form>
+</main>
+</body>
+</html>
